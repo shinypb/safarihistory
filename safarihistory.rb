@@ -6,7 +6,7 @@ SAFARI_TIMESTAMP_EPOCH = 978307200;
 SQLITE_COLUMN_SEPARATOR = '|'
 
 def query(sql)
-	lines = `echo #{sql.shellescape} | sqlite3 -readonly #{SAFARI_HISTORY_FILENAME.shellescape}`.strip.split("\n")
+	lines = `sqlite3 -readonly #{SAFARI_HISTORY_FILENAME.shellescape} #{sql.shellescape}`.strip.split("\n")
 
 	lines.map do |line|
 		line.split(SQLITE_COLUMN_SEPARATOR)
